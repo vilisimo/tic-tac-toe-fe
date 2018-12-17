@@ -1,0 +1,9 @@
+.board {
+  display: flex;
+  justify-content: space-between;
+
+  border: 1px solid black;
+  width: 330px;
+  height: 330px;
+  padding: 5px;
+}
