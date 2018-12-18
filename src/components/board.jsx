@@ -1,6 +1,6 @@
 import React from 'react';
 import Column from './column';
-import './board.css';
+import './styles/board.css';
 
 const Board = () => (
   <div className="board">

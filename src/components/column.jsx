@@ -1,6 +1,6 @@
 import React from 'react';
 import Square from './square';
-import './column.css';
+import './styles/column.css';
 
 const Column = () => (
   <div className="column">
