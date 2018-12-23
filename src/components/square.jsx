@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { thunkedMove } from '../redux/actions/actions';
 import './styles/square.css';
 
-const Square = ({ filler, onClick }) => (
-  <div className="square" onClick={onClick}>{filler}</div>
-);
+class Square extends Component {
+  handleClick = () => {
+    const { marker, onClick } = this.props;
+    if (!marker) {
+      onClick();
+    }
+  }
 
-const mapDispatchToProps = dispatch => ({
-  onClick: () => dispatch(thunkedMove())
+  render() {
+    const { marker } = this.props;
+    return (
+      <div className="square" onClick={this.handleClick}>
+        {marker}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state, ownProps) => ({
+  marker: state.moves.board[ownProps.number],
 });
 
-export default connect(null, mapDispatchToProps)(Square);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onClick: () => dispatch(thunkedMove(ownProps.number))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Square);

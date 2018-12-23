@@ -1,10 +1,13 @@
 import { MOVE } from './types';
 
-export const move = () => ({
-  type: MOVE
-});
-
-export const thunkedMove = () => async dispatch => {
+export const thunkedMove = (square) => async dispatch => {
   console.log("Going through thunk");
-  dispatch(move());
+  dispatch(move(square));
 }
+
+export const move = (square) => ({
+  type: MOVE,
+  payload: {
+    square: square,
+  }
+});
