@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { move } from '../redux/actions/actions';
+import { thunkedMove } from '../redux/actions/actions';
 import './styles/square.css';
 
 const Square = ({ filler, onClick }) => (
@@ -8,7 +8,7 @@ const Square = ({ filler, onClick }) => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  onClick: () => dispatch(move())
+  onClick: () => dispatch(thunkedMove())
 });
 
 export default connect(null, mapDispatchToProps)(Square);
