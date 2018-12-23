@@ -1,9 +1,9 @@
 import React from 'react';
 import Square from './square';
-import './styles/column.css';
+import './styles/row.css';
 
 const Column = () => (
-  <div className="column">
+  <div className="row">
     <Square filler="X" />
     <Square filler="O" />
     <Square filler="X" />

@@ -1,12 +1,12 @@
 import React from 'react';
-import Column from './column';
+import Row from './row';
 import './styles/board.css';
 
 const Board = () => (
   <div className="board">
-    <Column />
-    <Column />
-    <Column />
+    <Row />
+    <Row />
+    <Row />
   </div>
 );
 
