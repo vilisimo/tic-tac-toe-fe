@@ -1,4 +1,4 @@
-import { MOVE } from '../actions/types';
+import { MOVE } from '../actions/actions';
 
 const initialState = {
   board: Array(9).fill(null),
