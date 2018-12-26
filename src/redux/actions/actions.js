@@ -14,12 +14,13 @@ export const thunkedInit = () => async dispatch => {
   } else {
     gameId = await api.Game.newGame();
     localStorage.setItem(LS_GAME_KEY, gameId);
-    dispatch(newGame());
+    dispatch(newGame(gameId));
   }
 };
 
-export const newGame = () => ({
+export const newGame = (gameId) => ({
   type: NEW_GAME,
+  payload: { gameId },
 });
 
 export const resumeGame = (game) => ({
