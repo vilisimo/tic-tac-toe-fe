@@ -4,9 +4,9 @@ import './styles/row.css';
 
 const Column = ({ row }) => (
   <div className="row">
-    <Square number={row * 3} />
-    <Square number={row * 3 + 1} />
-    <Square number={row * 3 + 2} />
+    <Square number={row * 3} x={1} y={row + 1} />
+    <Square number={row * 3 + 1} x={2} y={row + 1} />
+    <Square number={row * 3 + 2} x={3} y={row + 1} />
   </div>
 );
 

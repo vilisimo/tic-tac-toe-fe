@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => dispatch(thunkedMove(ownProps.number)),
+  onClick: () => dispatch(thunkedMove(ownProps.number, ownProps.x, ownProps.y)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Square);
