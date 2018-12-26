@@ -28,7 +28,7 @@ export const resumeGame = (game) => ({
   payload: game,
 });
 
-export const thunkedMove = (square, x, y) => async dispatch => {
+export const thunkedMove = (square, x, y) => dispatch => {
   dispatch(move(square));
 }
 
