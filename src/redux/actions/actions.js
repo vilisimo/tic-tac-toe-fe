@@ -39,10 +39,9 @@ export const resumeGame = game => ({
 });
 
 export const thunkedMove = (square, x, y) => (dispatch, getState) => {
-  dispatch(move(square));
-  console.log(getState());
   const { xTurn, gameId } = getState().moves;
   const player = xTurn ? 'X' : 'O';
+  dispatch(move(square));
   api.Game.makeMove(gameId, { player, square, x, y });
 }
 
