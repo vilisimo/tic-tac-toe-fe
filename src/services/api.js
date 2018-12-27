@@ -22,11 +22,12 @@ export const requests = {
     const config = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     };
     return fetch(url, config)
       .then(handleError)
-      .then(response => response.json())
+      .then(response => response.text())
+      .then(text => text ? JSON.parse(text) : {})
       .catch(error => console.error(`POST on ${url} failed\n`, error));
   },
 }
@@ -34,4 +35,5 @@ export const requests = {
 export const Game = {
   findOne: id => requests.get(`/games/${id}`),
   newGame: () => requests.post(`/games/`).then(body => body.id),
+  makeMove: (id, move) => requests.post(`/games/${id}/moves`, move),
 }
