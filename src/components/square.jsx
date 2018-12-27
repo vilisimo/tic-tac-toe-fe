@@ -5,8 +5,8 @@ import './styles/square.css';
 
 class Square extends Component {
   handleClick = () => {
-    const { marker, onClick } = this.props;
-    if (!marker) {
+    const { marker, winner, onClick } = this.props;
+    if (!marker && !winner) {
       onClick();
     }
   }
@@ -23,6 +23,7 @@ class Square extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   marker: state.moves.board[ownProps.number],
+  winner: state.moves.winner,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

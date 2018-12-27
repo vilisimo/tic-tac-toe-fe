@@ -12,13 +12,15 @@ class Board extends Component {
   }
 
   render() {
-    const { player } = this.props;
+    const { player, winner } = this.props;
+
+    const text = winner
+      ? `Player ${winner} won the game!`
+      : `Player ${player}'s turn`;
 
     return (
       <div className="game">
-        <div className="player">
-          Player {player} move
-        </div>
+        <div className="player">{text}</div>
         <div className="board">
           <Row row={0} />
           <Row row={1} />
@@ -31,6 +33,7 @@ class Board extends Component {
 
 const mapPropsToState = state => ({
   player: state.moves.xTurn ? 'X' : 'O',
+  winner: state.moves.winner,
 })
 
 const mapDispatchToProps = dispatch => ({

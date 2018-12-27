@@ -1,8 +1,11 @@
 import { MOVE, NEW_GAME, RESUME_GAME } from '../actions/actions';
+import calculateWinner from '../../util/rules';
 
 const initialState = {
   board: Array(9).fill(null),
   xTurn: true,
+  gameId: null,
+  winner: null,
 };
 
 const moves = (state = initialState, action) => {
@@ -27,10 +30,12 @@ const moves = (state = initialState, action) => {
       const { square } = action.payload;
       const board = state.board.slice();
       board[square] = state.xTurn ? 'X' : 'O';
+      const winner = calculateWinner(board);
 
       return {
         ...state,
         board,
+        winner,
         xTurn: !state.xTurn,
       };
     }
