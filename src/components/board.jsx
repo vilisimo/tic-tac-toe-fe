@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Row from './row';
 import './styles/board.css';
-import { thunkedInit } from '../redux/actions/actions';
+import { thunkedInitGame } from '../redux/actions/actions';
 
 class Board extends Component {
 
@@ -24,7 +24,7 @@ class Board extends Component {
 
 
 const mapDispatchToProps = dispatch => ({
-  onMount: () => dispatch(thunkedInit()),
+  onMount: () => dispatch(thunkedInitGame()),
 });
 
 export default connect(null, mapDispatchToProps)(Board);

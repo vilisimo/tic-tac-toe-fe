@@ -6,24 +6,32 @@ export const RESUME_GAME = 'RESUME_GAME';
 
 const LS_GAME_KEY = 'ticatactoe-id';
 
-export const thunkedInit = () => async dispatch => {
-  let gameId = localStorage.getItem(LS_GAME_KEY);
+export const thunkedInitGame = () => async dispatch => {
+  const gameId = localStorage.getItem(LS_GAME_KEY);
   if (gameId) {
-    const game = await api.Game.findOne(gameId);
-    dispatch(resumeGame(game));
+    dispatch(thunkedResumeGame(gameId))
   } else {
-    gameId = await api.Game.newGame();
-    localStorage.setItem(LS_GAME_KEY, gameId);
-    dispatch(newGame(gameId));
+    dispatch(thunkedNewGame());
   }
 };
 
-export const newGame = (gameId) => ({
+export const thunkedResumeGame = (gameId) => async dispatch => {
+  const game = await api.Game.findOne(gameId);
+  dispatch(resumeGame(game));
+}
+
+export const thunkedNewGame = () => async dispatch => {
+  const gameId = await api.Game.newGame();
+  localStorage.setItem(LS_GAME_KEY, gameId);
+  dispatch(newGame(gameId));
+}
+
+export const newGame = gameId => ({
   type: NEW_GAME,
   payload: { gameId },
 });
 
-export const resumeGame = (game) => ({
+export const resumeGame = game => ({
   type: RESUME_GAME,
   payload: game,
 });
