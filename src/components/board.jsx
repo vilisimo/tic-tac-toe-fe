@@ -12,19 +12,29 @@ class Board extends Component {
   }
 
   render() {
+    const { player } = this.props;
+
     return (
-      <div className="board">
-        <Row row={0} />
-        <Row row={1} />
-        <Row row={2} />
+      <div className="game">
+        <div className="player">
+          Player {player} move
+        </div>
+        <div className="board">
+          <Row row={0} />
+          <Row row={1} />
+          <Row row={2} />
+        </div>
       </div>
     );
   }
 }
 
+const mapPropsToState = state => ({
+  player: state.moves.xTurn ? 'X' : 'O',
+})
 
 const mapDispatchToProps = dispatch => ({
   onMount: () => dispatch(thunkedInitGame()),
 });
 
-export default connect(null, mapDispatchToProps)(Board);
+export default connect(mapPropsToState, mapDispatchToProps)(Board);
