@@ -29,6 +29,7 @@ const moves = (state = initialState, action) => {
       board[square] = state.xTurn ? 'X' : 'O';
 
       return {
+        ...state,
         board,
         xTurn: !state.xTurn,
       };

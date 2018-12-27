@@ -40,6 +40,7 @@ describe('reducers', () => {
       const initialState = {
         board: Array(9).fill(null),
         xTurn: true,
+        gameId: 'game Id',
       };
 
       const expectedBoard = initialState.board;
@@ -47,6 +48,7 @@ describe('reducers', () => {
       const expectedState = {
         board: expectedBoard,
         xTurn: false,
+        gameId: 'game Id',
       };
 
       expect(moves(initialState, move(0))).toEqual(expectedState);
