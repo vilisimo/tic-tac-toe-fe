@@ -4,10 +4,10 @@ export const MOVE = 'MOVE';
 export const NEW_GAME = 'NEW_GAME';
 export const RESUME_GAME = 'RESUME_GAME';
 
-const LS_GAME_KEY = 'ticatactoe-id';
+const SESSION_GAME_KEY = 'ticatactoe-id';
 
 export const thunkedInitGame = () => async dispatch => {
-  const gameId = sessionStorage.getItem(LS_GAME_KEY);
+  const gameId = sessionStorage.getItem(SESSION_GAME_KEY);
   if (gameId) {
     dispatch(thunkedResumeGame(gameId))
   } else {
@@ -30,7 +30,7 @@ export const thunkedResumeGame = (gameId) => async dispatch => {
 export const thunkedNewGame = () => async dispatch => {
   // TODO: add loading indicator
   const gameId = await api.Game.newGame();
-  sessionStorage.setItem(LS_GAME_KEY, gameId);
+  sessionStorage.setItem(SESSION_GAME_KEY, gameId);
   dispatch(newGame(gameId));
 }
 
