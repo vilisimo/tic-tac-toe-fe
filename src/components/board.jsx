@@ -40,7 +40,7 @@ const mapPropsToState = state => ({
   player: state.moves.xTurn ? 'X' : 'O',
   winner: state.moves.winner,
   board: state.moves.board,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   onMount: () => dispatch(thunkedInitGame()),
