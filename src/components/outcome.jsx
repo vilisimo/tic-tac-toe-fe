@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getPlayer, getWinner, getBoard } from '../redux/reducers/moves';
 import './styles/outcome.css';
 
-class GameOutcome extends Component {
+export class GameOutcome extends Component {
 
   writeText = () => {
     const { player, winner, board } = this.props;
