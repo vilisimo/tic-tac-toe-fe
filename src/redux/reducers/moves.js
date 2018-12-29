@@ -45,4 +45,10 @@ const moves = (state = INITIAL_STATE, action) => {
   }
 }
 
+// selectors
+export const getPlayer = state => state.moves.xTurn ? 'X' : 'O';
+export const getWinner = state => state.moves.winner;
+export const getBoard = state => state.moves.board;
+export const getMark = (state, number) => state.moves.board[number];
+
 export default moves;

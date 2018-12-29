@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './styles/move.css';
+import { getSquareByNumber } from '../redux/reducers/history';
 
 const Move = ({ index, move: {player, x, y} }) => (
   <div className="move">
@@ -9,7 +10,7 @@ const Move = ({ index, move: {player, x, y} }) => (
 );
 
 const mapStateToprops = (state, ownProps) => ({
-  move: state.history.moves[ownProps.square]
+  move: getSquareByNumber(state, ownProps.square)
 });
 
 export default connect(mapStateToprops, null)(Move);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getPlayer, getWinner, getBoard } from '../redux/reducers/moves';
 import './styles/outcome.css';
 
 class GameOutcome extends Component {
@@ -21,9 +22,9 @@ class GameOutcome extends Component {
 }
 
 const mapStateToprops = state => ({
-  player: state.moves.xTurn ? 'X' : 'O',
-  winner: state.moves.winner,
-  board: state.moves.board,
+  player: getPlayer(state),
+  winner: getWinner(state),
+  board: getBoard(state),
 });
 
 export default connect(mapStateToprops, null)(GameOutcome);

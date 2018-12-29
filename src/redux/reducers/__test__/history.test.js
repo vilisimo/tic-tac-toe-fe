@@ -1,4 +1,4 @@
-import history from '../history';
+import history, { getSquares, getSquareByNumber } from '../history';
 import { move, newGame } from '../../actions/actions';
 
 describe('reducers', () => {
@@ -51,6 +51,27 @@ describe('reducers', () => {
       };
 
       expect(history(initialState, newGame())).toEqual({ moves: {}, squares: []});
+    });
+  });
+});
+
+describe('selectors', () => {
+  describe('history store selectors', () => {
+    it('retrieves squares', () => {
+      const state = { history: { squares: [1, 2, 3], } };
+
+      expect(getSquares(state)).toEqual([1, 2, 3]);
+    });
+
+    it('retrieves a move by its square', () => {
+      const state = { history: {
+        moves: {
+          0: { player: 'X', },
+          1: { player: 'O', },
+        }
+      }};
+
+      expect(getSquareByNumber(state, 1)).toEqual({ player: 'O' });
     });
   });
 });

@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { thunkedMove } from '../redux/actions/actions';
+import { getMark, getWinner } from '../redux/reducers/moves';
 import './styles/square.css';
 
 class Square extends Component {
   handleClick = () => {
-    const { marker, winner, onClick } = this.props;
-    if (!marker && !winner) {
+    const { mark, winner, onClick } = this.props;
+    if (!mark && !winner) {
       onClick();
     }
   }
 
   render() {
-    const { marker } = this.props;
     return (
       <div className="square" onClick={this.handleClick}>
-        {marker}
+        {this.props.mark}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  marker: state.moves.board[ownProps.number],
-  winner: state.moves.winner,
+  mark: getMark(state, ownProps.number),
+  winner: getWinner(state),
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -1,4 +1,4 @@
-import moves from '../moves';
+import moves, { getPlayer, getWinner, getBoard, getMark } from '../moves';
 import { move, newGame, resumeGame } from '../../actions/actions';
 
 describe('reducers', () => {
@@ -109,6 +109,34 @@ describe('reducers', () => {
       }
 
       expect(moves(initialState, move({ square: 6 }))).toEqual(expectedState);
+    });
+  });
+});
+
+describe('selectors', () => {
+  describe('moves store selectors', () => {
+    it('retrieves a player', () => {
+      const state = { moves: { xTurn: true } };
+
+      expect(getPlayer(state)).toEqual('X');
+    });
+
+    it('retrieves a winner', () => {
+      const state = { moves: { winner: 'O' } };
+
+      expect(getWinner(state)).toEqual('O');
+    });
+
+    it('retrieves a board', () => {
+      const state = { moves: { board: ['O', 'X'] } };
+
+      expect(getBoard(state)).toEqual(['O', 'X']);
+    });
+
+    it('retrieves a mark by square number', () => {
+      const state = { moves: { board: ['O', 'X'] } };
+
+      expect(getMark(state, 1)).toEqual('X');
     });
   });
 });

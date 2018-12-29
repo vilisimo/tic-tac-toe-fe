@@ -29,4 +29,8 @@ const history = (state = INITIAL_STATE, action) => {
   }
 }
 
+// selectors
+export const getSquares = state => state.history.squares;
+export const getSquareByNumber = (state, square) => state.history.moves[square];
+
 export default history;

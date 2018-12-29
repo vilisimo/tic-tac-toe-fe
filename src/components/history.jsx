@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getSquares } from '../redux/reducers/history';
 import Move from './move';
 import './styles/history.css';
 
@@ -13,7 +14,7 @@ const History = ({ squares }) => (
 );
 
 const mapStateToprops = state => ({
-  squares: state.history.squares,
+  squares: getSquares(state),
 });
 
 export default connect(mapStateToprops, null)(History);
