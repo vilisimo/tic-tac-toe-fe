@@ -6,7 +6,7 @@ import GameOutcome from '../outcome';
 import Board from '../board';
 import History from '../history';
 
-Enzyme.configure({ adapter: new Adapter() })
+Enzyme.configure({ adapter: new Adapter() });
 
 const setup = () => {
   const props = {

@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import Board from '../board';
 import Row from '../row';
 
-Enzyme.configure({ adapter: new Adapter() })
+Enzyme.configure({ adapter: new Adapter() });
 
 const setup = () => ({
   wrapper: shallow(<Board />),

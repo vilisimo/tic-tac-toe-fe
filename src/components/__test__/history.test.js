@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { History } from '../history';
 import Move from '../move';
 
-Enzyme.configure({ adapter: new Adapter() })
+Enzyme.configure({ adapter: new Adapter() });
 
 const setup = () => {
   const props = {

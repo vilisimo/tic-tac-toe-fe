@@ -4,7 +4,7 @@ import { thunkedMove } from '../redux/actions/actions';
 import { getMark, getWinner } from '../redux/reducers/moves';
 import './styles/square.css';
 
-class Square extends Component {
+export class Square extends Component {
   handleClick = () => {
     const { mark, winner, onClick } = this.props;
     if (!mark && !winner) {

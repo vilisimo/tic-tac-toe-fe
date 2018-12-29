@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import Row from '../row';
 import Square from '../square';
 
-Enzyme.configure({ adapter: new Adapter() })
+Enzyme.configure({ adapter: new Adapter() });
 
 const setup = () => ({
    wrapper: shallow(<Row row={1} />),
