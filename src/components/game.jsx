@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { thunkedInitGame } from '../redux/actions/actions';
+import { thunkedInitGame, thunkedNewGame } from '../redux/actions/actions';
 import History from './history';
 import Row from './row';
-import './styles/board.css';
+import './styles/game.css';
 
-class Board extends Component {
+class Game extends Component {
 
   componentDidMount() {
     const { onMount } = this.props;
@@ -32,6 +32,9 @@ class Board extends Component {
           <Row row={1} />
           <Row row={2} />
         </div>
+        <button id="reset" onClick={this.props.onClick}>
+          Reset the Game
+        </button>
         <History />
       </div>
     );
@@ -46,6 +49,7 @@ const mapStateToprops = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onMount: () => dispatch(thunkedInitGame()),
+  onClick: () => dispatch(thunkedNewGame()),
 });
 
-export default connect(mapStateToprops, mapDispatchToProps)(Board);
+export default connect(mapStateToprops, mapDispatchToProps)(Game);

@@ -1,5 +1,5 @@
 import history from '../history';
-import { move } from '../../actions/actions';
+import { move, newGame } from '../../actions/actions';
 
 describe('reducers', () => {
   describe('history store reducer', () => {
@@ -40,6 +40,17 @@ describe('reducers', () => {
 
       expect(history(initialState, move({ player: 'O', square: 1, x: 2, y: 1 })))
       .toEqual(expectedState);
+    });
+
+    it('resets state when new game is requested', () => {
+      const initialState = {
+        moves: {
+          0: { player: 'X', x: 1, y: 1 }
+        },
+        squares: [0, ],
+      };
+
+      expect(history(initialState, newGame())).toEqual({ moves: {}, squares: []});
     });
   });
 });

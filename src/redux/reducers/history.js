@@ -1,11 +1,11 @@
-import { MOVE } from '../actions/actions';
+import { MOVE, NEW_GAME } from '../actions/actions';
 
-const initialState = {
+const INITIAL_STATE = {
   moves: {},
   squares: [],
 }
 
-const history = (state = initialState, action) => {
+const history = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case MOVE: {
       const { player, square, x, y } = action.payload
@@ -20,6 +20,9 @@ const history = (state = initialState, action) => {
         squares,
       }
     }
+
+    case NEW_GAME:
+      return INITIAL_STATE;
 
     default:
       return state;

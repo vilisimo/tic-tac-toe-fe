@@ -1,19 +1,19 @@
 import { MOVE, NEW_GAME, RESUME_GAME } from '../actions/actions';
 import calculateWinner from '../../util/rules';
 
-const initialState = {
+const INITIAL_STATE = {
   board: Array(9).fill(null),
   xTurn: true,
   gameId: null,
   winner: null,
 };
 
-const moves = (state = initialState, action) => {
+const moves = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case NEW_GAME: {
       const { gameId } = action.payload
       return {
-        ...state,
+        ...INITIAL_STATE,
         gameId,
       }
     }

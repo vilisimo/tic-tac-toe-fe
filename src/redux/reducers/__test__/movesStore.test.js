@@ -18,12 +18,32 @@ describe('reducers', () => {
       const initialState = {
         board: Array(9).fill(null),
         xTurn: true,
+        gameId: null,
+        winner: null,
       };
 
       const gameId = 'game id';
       const expectedState = { ...initialState, gameId };
 
       expect(moves(initialState, newGame(gameId))).toEqual(expectedState);
+    });
+
+    it('resets state when new game is requested', () => {
+      const initialState = {
+        board: ['X', 'O', null, 'X', 'O', 'O', null, 'X', null],
+        xTurn: true,
+        gameId: 'some id',
+        winner: null,
+      };
+
+      const expectedState = {
+        board: Array(9).fill(null),
+        xTurn: true,
+        gameId: 'game id',
+        winner: null,
+      }
+
+      expect(moves(initialState, newGame('game id'))).toEqual(expectedState);
     });
 
     it('sets resumed game id', () => {
