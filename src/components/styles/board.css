@@ -1,12 +1,13 @@
 .game {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
 }
 
-.player {
-  padding: 0.5em;
+.outcome {
   font-size: 2em;
+  padding-bottom: 15px;
 }
 
 .board {

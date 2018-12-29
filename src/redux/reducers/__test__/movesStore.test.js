@@ -45,7 +45,7 @@ describe('reducers', () => {
         gameId: 'game Id',
       };
 
-      const expectedBoard = initialState.board;
+      const expectedBoard = Array(9).fill(null);
       expectedBoard[0] = 'X';
       const expectedState = {
         board: expectedBoard,
@@ -54,7 +54,7 @@ describe('reducers', () => {
         winner: null,
       };
 
-      expect(moves(initialState, move(0))).toEqual(expectedState);
+      expect(moves(initialState, move({ square: 0 }))).toEqual(expectedState);
     });
 
     it('makes a player 2 move', () => {
@@ -63,7 +63,7 @@ describe('reducers', () => {
         xTurn: false,
       };
 
-      const expectedBoard = initialState.board;
+      const expectedBoard = Array(9).fill(null);
       expectedBoard[0] = 'O';
       const expectedState = {
         board: expectedBoard,
@@ -71,7 +71,7 @@ describe('reducers', () => {
         winner: null,
       };
 
-      expect(moves(initialState, move(0))).toEqual(expectedState);
+      expect(moves(initialState, move({ square: 0 }))).toEqual(expectedState);
     });
 
     it('calculates winner', () => {
@@ -79,7 +79,6 @@ describe('reducers', () => {
         board: ['X', 'O', null, 'X', 'O', 'O', null, 'X', null],
         xTurn: true,
         gameId: 'game id',
-        winner: null,
       };
 
       const expectedState =  {
@@ -89,7 +88,7 @@ describe('reducers', () => {
         winner: 'X',
       }
 
-      expect(moves(initialState, move(6))).toEqual(expectedState);
+      expect(moves(initialState, move({ square: 6 }))).toEqual(expectedState);
     });
   });
 });

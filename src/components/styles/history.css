@@ -1,0 +1,10 @@
+.history {
+  position: absolute;
+  top: 383px;
+}
+
+.history > .title {
+  font-size: 1.5em;
+  padding-top: 10px;
+  text-align: center;
+}

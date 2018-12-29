@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { thunkedInitGame } from '../redux/actions/actions';
+import History from './history';
 import Row from './row';
 import './styles/board.css';
-import { thunkedInitGame } from '../redux/actions/actions';
 
 class Board extends Component {
 
@@ -25,18 +26,19 @@ class Board extends Component {
   render() {
     return (
       <div className="game">
-        <div className="player">{this.writeText()}</div>
+        <div className="outcome">{this.writeText()}</div>
         <div className="board">
           <Row row={0} />
           <Row row={1} />
           <Row row={2} />
         </div>
+        <History />
       </div>
     );
   }
 }
 
-const mapPropsToState = state => ({
+const mapStateToprops = state => ({
   player: state.moves.xTurn ? 'X' : 'O',
   winner: state.moves.winner,
   board: state.moves.board,
@@ -46,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
   onMount: () => dispatch(thunkedInitGame()),
 });
 
-export default connect(mapPropsToState, mapDispatchToProps)(Board);
+export default connect(mapStateToprops, mapDispatchToProps)(Board);

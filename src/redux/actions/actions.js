@@ -15,13 +15,18 @@ export const thunkedInitGame = () => async dispatch => {
   }
 };
 
-export const thunkedResumeGame = (gameId) => async dispatch => {
+export const thunkedResumeGame = gameId => async dispatch => {
   // TODO: add loading indicator
   const game = await api.Game.findOne(gameId);
   if (game) {
     dispatch(resumeGame(game));
     const { moves } = game;
-    moves.forEach(m => dispatch(move(m.square, m.x, m.y)));
+    moves.forEach(m => dispatch(move({
+      player: m.player,
+      square: m.square,
+      x: m.x,
+      y: m.y
+    })));
   } else {
     dispatch(thunkedNewGame());
   }
@@ -46,12 +51,12 @@ export const resumeGame = game => ({
 
 export const thunkedMove = (square, x, y) => (dispatch, getState) => {
   const { xTurn, gameId } = getState().moves;
-  const player = xTurn ? 'X' : 'O';
-  dispatch(move(square, x, y));
-  api.Game.makeMove(gameId, { player, square, x, y });
+  const payload = { player: xTurn ? 'X' : 'O', square, x, y }
+  dispatch(move(payload));
+  api.Game.makeMove(gameId, payload);
 }
 
-export const move = (square, x, y) => ({
+export const move = payload => ({
   type: MOVE,
-  payload: { square, x, y },
+  payload,
 });
