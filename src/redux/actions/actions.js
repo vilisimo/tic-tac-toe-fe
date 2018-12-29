@@ -17,7 +17,6 @@ export const thunkedInitGame = () => async dispatch => {
 };
 
 export const thunkedResumeGame = gameId => async dispatch => {
-  // TODO: add loading indicator
   const game = await api.Game.findOne(gameId);
   if (game) {
     dispatch(resumeGame(game));
@@ -34,7 +33,6 @@ export const thunkedResumeGame = gameId => async dispatch => {
 }
 
 export const thunkedNewGame = () => async dispatch => {
-  // TODO: add loading indicator
   const gameId = await api.Game.newGame();
   sessionStorage.setItem(SESSION_GAME_KEY, gameId);
   dispatch(newGame(gameId));
