@@ -15,7 +15,7 @@ describe('components', () => {
     it('should render the board', () => {
       const { wrapper } = setup();
 
-      expect(wrapper.find('.board').hasClass('board')).toBe(true);
+      expect(wrapper.find('.board').exists()).toBe(true);
     });
 
     it('should render rows', () => {

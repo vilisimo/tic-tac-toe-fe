@@ -15,7 +15,7 @@ describe('components', () => {
     it('should render the row', () => {
       const { wrapper } = setup();
 
-      expect(wrapper.find('.row').hasClass('row')).toBe(true);
+      expect(wrapper.find('.row').exists()).toBe(true);
     });
 
     it('should render squares', () => {

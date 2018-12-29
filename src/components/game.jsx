@@ -6,7 +6,7 @@ import GameOutcome from './outcome';
 import History from './history';
 import './styles/game.css';
 
-class Game extends Component {
+export class Game extends Component {
 
   componentDidMount() {
     this.props.onMount();
