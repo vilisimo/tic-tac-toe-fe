@@ -6,7 +6,7 @@ const handleError = (response) => {
 };
 
 export const requests = {
-  get: (url) => {
+  get: async (url) => {
     const config = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
@@ -14,11 +14,10 @@ export const requests = {
 
     return fetch(url, config)
       .then(handleError)
-      .then(response => response.json())
-      .catch(error => console.error(`GET on ${url} failed\n`, error));
+      .then(response => response.json());
   },
 
-  post: (url, body) => {
+  post: async (url, body) => {
     const config = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -27,8 +26,7 @@ export const requests = {
     return fetch(url, config)
       .then(handleError)
       .then(response => response.text())
-      .then(text => text ? JSON.parse(text) : {})
-      .catch(error => console.error(`POST on ${url} failed\n`, error));
+      .then(text => text ? JSON.parse(text) : {});
   },
 };
 

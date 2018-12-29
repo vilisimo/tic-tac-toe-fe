@@ -17,20 +17,16 @@ export const thunkedInitGame = () => async (dispatch) => {
 };
 
 export const thunkedResumeGame = gameId => async (dispatch) => {
-  const game = await api.Game.findOne(gameId);
-  if (game) {
+  return api.Game.findOne(gameId)
+    .then(game => dispatch(thunkedRehydrateGame(game)))
+    .catch(() => dispatch(thunkedNewGame()));
+};
+
+export const thunkedRehydrateGame = game => (dispatch) => {
     dispatch(resumeGame(game));
     const { moves } = game;
-    moves.forEach(m => dispatch(move({
-      player: m.player,
-      square: m.square,
-      x: m.x,
-      y: m.y
-    })));
-  } else {
-    dispatch(thunkedNewGame());
-  }
-};
+    moves.forEach(m => dispatch(move({ player: m.player, square: m.square, x: m.x, y: m.y })));
+}
 
 export const thunkedNewGame = () => async (dispatch) => {
   const gameId = await api.Game.newGame();
@@ -52,7 +48,7 @@ export const thunkedMove = (square, x, y) => (dispatch, getState) => {
   const { xTurn, gameId } = getState().moves;
   const payload = { player: xTurn ? PLAYER_ONE : PLAYER_TWO, square, x, y };
   dispatch(move(payload));
-  api.Game.makeMove(gameId, payload);
+  return api.Game.makeMove(gameId, payload);
 };
 
 export const move = payload => ({
