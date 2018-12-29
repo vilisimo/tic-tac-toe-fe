@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 const moves = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case NEW_GAME: {
-      const { gameId } = action.payload
+      const { gameId } = action.payload;
       return {
         ...INITIAL_STATE,
         gameId,

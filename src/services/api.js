@@ -1,9 +1,9 @@
-const handleError = response => {
+const handleError = (response) => {
   if (response.ok) {
     return response;
   }
-  throw Error(response.statusText + ". Status code: " + response.status);
-}
+  throw Error(`${response.statusText}. Status code: ${response.status}`);
+};
 
 export const requests = {
   get: (url) => {
@@ -15,7 +15,7 @@ export const requests = {
     return fetch(url, config)
       .then(handleError)
       .then(response => response.json())
-      .catch((error) => console.error(`GET on ${url} failed\n`, error));
+      .catch(error => console.error(`GET on ${url} failed\n`, error));
   },
 
   post: (url, body) => {
@@ -30,10 +30,10 @@ export const requests = {
       .then(text => text ? JSON.parse(text) : {})
       .catch(error => console.error(`POST on ${url} failed\n`, error));
   },
-}
+};
 
 export const Game = {
   findOne: id => requests.get(`/games/${id}`),
-  newGame: () => requests.post(`/games/`).then(body => body.id),
+  newGame: () => requests.post('/games/').then(body => body.id),
   makeMove: (id, move) => requests.post(`/games/${id}/moves`, move),
-}
+};

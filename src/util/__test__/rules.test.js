@@ -2,7 +2,7 @@ import calculateWinner from '../rules';
 
 describe('rules', () => {
   it('calculates winners', () => {
-    //since there are only 8 winning states, we can easily test it manually
+    // since there are only 8 winning states, we can easily test it manually
     // for 100% coverage
 
     // columns

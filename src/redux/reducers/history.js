@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 const history = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case MOVE: {
-      const { player, square, x, y } = action.payload
+      const { player, square, x, y } = action.payload;
       const squares = state.squares.slice();
       squares.push(square);
 

@@ -17,7 +17,7 @@ class Game extends Component {
       <div className="game">
         <GameOutcome />
         <Board />
-        <button id="reset" onClick={this.props.onClick}>
+        <button type="button" id="reset" onClick={this.props.onClick}>
           Reset the Game
         </button>
         <History />

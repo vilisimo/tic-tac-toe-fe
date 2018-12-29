@@ -55,7 +55,8 @@ describe('reducers', () => {
       const gameId = 'game id';
       const expectedState = { ...initialState, gameId };
 
-      expect(moves(initialState, resumeGame({ id: gameId, actions: [], finished: false }))).toEqual(expectedState);
+      expect(moves(initialState, resumeGame({ id: gameId, actions: [], finished: false })))
+        .toEqual(expectedState);
     });
 
     it('makes a player 1 move', () => {

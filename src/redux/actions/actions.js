@@ -7,16 +7,16 @@ export const RESUME_GAME = 'RESUME_GAME';
 
 const SESSION_GAME_KEY = 'ticatactoe-id';
 
-export const thunkedInitGame = () => async dispatch => {
+export const thunkedInitGame = () => async (dispatch) => {
   const gameId = sessionStorage.getItem(SESSION_GAME_KEY);
   if (gameId) {
-    dispatch(thunkedResumeGame(gameId))
+    dispatch(thunkedResumeGame(gameId));
   } else {
     dispatch(thunkedNewGame());
   }
 };
 
-export const thunkedResumeGame = gameId => async dispatch => {
+export const thunkedResumeGame = gameId => async (dispatch) => {
   const game = await api.Game.findOne(gameId);
   if (game) {
     dispatch(resumeGame(game));
@@ -30,13 +30,13 @@ export const thunkedResumeGame = gameId => async dispatch => {
   } else {
     dispatch(thunkedNewGame());
   }
-}
+};
 
-export const thunkedNewGame = () => async dispatch => {
+export const thunkedNewGame = () => async (dispatch) => {
   const gameId = await api.Game.newGame();
   sessionStorage.setItem(SESSION_GAME_KEY, gameId);
   dispatch(newGame(gameId));
-}
+};
 
 export const newGame = gameId => ({
   type: NEW_GAME,
@@ -50,10 +50,10 @@ export const resumeGame = game => ({
 
 export const thunkedMove = (square, x, y) => (dispatch, getState) => {
   const { xTurn, gameId } = getState().moves;
-  const payload = { player: xTurn ? PLAYER_ONE : PLAYER_TWO, square, x, y }
+  const payload = { player: xTurn ? PLAYER_ONE : PLAYER_TWO, square, x, y };
   dispatch(move(payload));
   api.Game.makeMove(gameId, payload);
-}
+};
 
 export const move = payload => ({
   type: MOVE,

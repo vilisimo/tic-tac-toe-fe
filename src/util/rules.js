@@ -1,7 +1,7 @@
 export const PLAYER_ONE = 'X';
 export const PLAYER_TWO = 'O';
 
-const calculateWinner = board => {
+const calculateWinner = (board) => {
   const combinations = [
     [0, 1, 2], // 1st row
     [3, 4, 5], // 2nd row
@@ -14,7 +14,7 @@ const calculateWinner = board => {
   ];
 
   let winner = null;
-  combinations.forEach(combination => {
+  combinations.forEach((combination) => {
     const [first, second, third] = combination;
     if (board[first] && board[first] === board[second] && board[first] === board[third]) {
       winner = board[first];
@@ -22,6 +22,6 @@ const calculateWinner = board => {
   });
 
   return winner;
-}
+};
 
 export default calculateWinner;
