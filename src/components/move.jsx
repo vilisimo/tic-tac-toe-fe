@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './styles/move.css';
 import { getSquareByNumber } from '../redux/reducers/history';
 
-const Move = ({ index, move: {player, x, y} }) => (
+export const Move = ({ index, move: {player, x, y} }) => (
   <div className="move">
     {index + 1}. Player {player} marked ({x}, {y})
   </div>

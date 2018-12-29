@@ -4,11 +4,11 @@ import { getSquares } from '../redux/reducers/history';
 import Move from './move';
 import './styles/history.css';
 
-const History = ({ squares }) => (
+export const History = ({ squares }) => (
   <div className="history">
     <div className="title">History:</div>
     { squares && squares.map((square, index) => {
-      return <Move square={square} key={square} index={index} />;
+      return <Move key={square} square={square} index={index} />;
     })}
   </div>
 );
