@@ -23,6 +23,7 @@ export const requests = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     };
+
     return fetch(url, config)
       .then(handleError)
       .then(response => response.text())
