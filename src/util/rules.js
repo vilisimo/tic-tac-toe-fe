@@ -1,3 +1,6 @@
+export const PLAYER_ONE = 'X';
+export const PLAYER_TWO = 'O';
+
 const calculateWinner = board => {
   const combinations = [
     [0, 1, 2], // 1st row

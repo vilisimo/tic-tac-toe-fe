@@ -1,4 +1,5 @@
 import { api } from '../../services';
+import { PLAYER_ONE, PLAYER_TWO } from '../../util/rules';
 
 export const MOVE = 'MOVE';
 export const NEW_GAME = 'NEW_GAME';
@@ -51,7 +52,7 @@ export const resumeGame = game => ({
 
 export const thunkedMove = (square, x, y) => (dispatch, getState) => {
   const { xTurn, gameId } = getState().moves;
-  const payload = { player: xTurn ? 'X' : 'O', square, x, y }
+  const payload = { player: xTurn ? PLAYER_ONE : PLAYER_TWO, square, x, y }
   dispatch(move(payload));
   api.Game.makeMove(gameId, payload);
 }

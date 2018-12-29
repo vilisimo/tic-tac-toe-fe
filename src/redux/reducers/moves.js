@@ -1,5 +1,5 @@
 import { MOVE, NEW_GAME, RESUME_GAME } from '../actions/actions';
-import calculateWinner from '../../util/rules';
+import calculateWinner, { PLAYER_ONE, PLAYER_TWO } from '../../util/rules';
 
 const INITIAL_STATE = {
   board: Array(9).fill(null),
@@ -29,7 +29,7 @@ const moves = (state = INITIAL_STATE, action) => {
     case MOVE: {
       const { square } = action.payload;
       const board = state.board.slice();
-      board[square] = state.xTurn ? 'X' : 'O';
+      board[square] = state.xTurn ? PLAYER_ONE : PLAYER_TWO;
       const winner = calculateWinner(board);
 
       return {
@@ -46,7 +46,7 @@ const moves = (state = INITIAL_STATE, action) => {
 }
 
 // selectors
-export const getPlayer = state => state.moves.xTurn ? 'X' : 'O';
+export const getPlayer = state => state.moves.xTurn ? PLAYER_ONE : PLAYER_TWO;
 export const getWinner = state => state.moves.winner;
 export const getBoard = state => state.moves.board;
 export const getMark = (state, number) => state.moves.board[number];
