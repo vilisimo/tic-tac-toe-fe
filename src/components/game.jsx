@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { thunkedInitGame, thunkedNewGame } from '../redux/actions/actions';
 import History from './history';
-import Row from './row';
+import Board from './board';
 import './styles/game.css';
 
 class Game extends Component {
@@ -27,11 +27,7 @@ class Game extends Component {
     return (
       <div className="game">
         <div className="outcome">{this.writeText()}</div>
-        <div className="board">
-          <Row row={0} />
-          <Row row={1} />
-          <Row row={2} />
-        </div>
+        <Board />
         <button id="reset" onClick={this.props.onClick}>
           Reset the Game
         </button>
