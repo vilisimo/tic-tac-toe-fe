@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import moves from './movesStore';
+import moves from './moves';
 import history from './history';
 
 export default combineReducers({ moves, history });

@@ -1,4 +1,4 @@
-import moves from '../movesStore';
+import moves from '../moves';
 import { move, newGame, resumeGame } from '../../actions/actions';
 
 describe('reducers', () => {
