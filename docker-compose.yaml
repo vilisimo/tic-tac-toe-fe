@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+
+  mysql:
+    image: mysql:5.7.22
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpw
+      MYSQL_ROOT_HOST: '%'
+
+  backend:
+    image: tictactoe:1.0.0
+    ports:
+      - 8080:8080
+    restart: on-failure
+    depends_on:
+      - mysql
+
+  frontend:
+    image: tictactoe-fe:latest
+    restart: on-failure
+    ports:
+      - 3000:80
+    depends_on:
+      - backend
